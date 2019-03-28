@@ -23,7 +23,7 @@
 
 
     window.addEventListener("keydown", function (event) {
-        var charCode = (typeof event.which == "number") ? event.which : event.keyCode;
+        let charCode = (typeof event.which == "number") ? event.which : event.keyCode;
         let eventKey = (keys[charCode]);
 
         if(!eventKey) {
