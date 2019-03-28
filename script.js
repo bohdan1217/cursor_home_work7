@@ -36,13 +36,12 @@
 
     window.addEventListener("mousedown", function (event) {
         let eventClassName = event.target.className == 'key' || event.target.className == 'piano-key';
-        let eventKey =  event.target.textContent;
-
-        eventKey = eventKey.replace(/\s/g, '');
-
         if (eventClassName == false) {
             return;
         } else {
+            let eventKey =  event.target.textContent;
+            eventKey = eventKey.replace(/\s/g, '');
+
             sound(eventKey);
         }
     });
