@@ -11,14 +11,12 @@
     };
 
     let parent = document.querySelector('.piano');
+    let parentAudio =  document.querySelector('.audio');
+
     Object.keys(keys).forEach(function(key, id) {
         let newChild = '<div id="key-'+ keys[key] +'" class="piano-key"><p class="key">' + keys[key] + '</p></div>';
-        parent.insertAdjacentHTML('beforeend', newChild);
-    });
-
-    let parentAudio =  document.querySelector('.audio');
-    Object.keys(keys).forEach(function(key, id) {
         let newChildAudio = '<audio id="sound-'+ keys[key] +'"><source src="samples/'+ ++id +'.mp3" type="audio/mpeg"></audio>';
+        parent.insertAdjacentHTML('beforeend', newChild);
         parentAudio.insertAdjacentHTML('beforeend', newChildAudio);
     });
 
