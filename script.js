@@ -1,21 +1,22 @@
 (function() {
-    const keys = {
-        65: "A",
-        83: "S",
-        68: "D",
-        70: "F",
-        71: "G",
-        72: "H",
-        74: "J",
-        75: "K",
-    };
+    const pianoKeys = new Map([
+        [65,'A'],
+        [83,'S'],
+        [68,'D'],
+        [70,'F'],
+        [71,'G'],
+        [72,'H'],
+        [74,'J'],
+        [75,'K'],
+    ]);
 
     let parent = document.querySelector('.piano');
     let parentAudio =  document.querySelector('.audio');
+    let start = 0;
 
-    Object.keys(keys).forEach(function(key, id) {
-        let newChild = '<div id="key-'+ keys[key] +'" class="piano-key"><p class="key">' + keys[key] + '</p></div>';
-        let newChildAudio = '<audio id="sound-'+ keys[key] +'"><source src="samples/'+ ++id +'.mp3" type="audio/mpeg"></audio>';
+    pianoKeys.forEach( (value, key, map) => {
+        let newChild = '<div id="key-'+ value +'" class="piano-key"><p class="key">' + value + '</p></div>';
+        let newChildAudio = '<audio id="sound-'+ value +'"><source src="samples/'+ ++start +'.mp3" type="audio/mpeg"></audio>';
         parent.insertAdjacentHTML('beforeend', newChild);
         parentAudio.insertAdjacentHTML('beforeend', newChildAudio);
     });
@@ -31,10 +32,10 @@
         }, 100);
     }
 
-
     window.addEventListener("keydown", function (event) {
         let charCode = (typeof event.which == "number") ? event.which : event.keyCode;
-        let eventKey = (keys[charCode]);
+        let eventKey = (pianoKeys.get(charCode));
+
         eventKey ? sound(eventKey) : null
     });
 
